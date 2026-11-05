@@ -13,6 +13,10 @@
 
 */
 
+	var movies = ["Star Wars: Revenge of the Sith", "A Silent Voice", "Everything, Everywhere, All at Once"];
+	var moviePosters = ["https://upload.wikimedia.org/wikipedia/en/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail_unscaled&_=20171214071623", "https://upload.wikimedia.org/wikipedia/en/3/32/A_Silent_Voice_Film_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original", "https://upload.wikimedia.org/wikipedia/en/1/1e/Everything_Everywhere_All_at_Once.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"]
+	var htmlMovies = ["revengeOfTheSith.html", "aSilentVoice.html", "everythingEverywhereAllAtOnce.html"];
+	var ratings = [4.9998, 4, 4.75];
 
 /* TO DO:
 	
@@ -35,3 +39,30 @@
 	  - Set the movie rating element's text to display the generated stars. 
 
 */
+
+	var movieCards = document.querySelectorAll('div.movie-card');
+	
+	for (var i = 0; i < movieCards.length; i++){
+		var movieName = movies[i];
+		var rate = ratings[i];
+		var html = htmlMovies[i];
+		var poster = moviePosters[i];
+		var filled = "★";
+		var empty = "☆";
+		var ratingString = "";
+
+		movieCards[i].innerHTML = '<a href="'+ html +'" class="movie-link">'+ movieName +'</a>'
+		movieCards[i].innerHTML += '<img class="movie-image" src="' + poster + '" alt="' + movieName + '">';
+		
+		for (var j = 0; j < 5; j++) {
+			if (j < rate) {
+				ratingString += filled;
+			}
+			else {
+				ratingString += empty;
+			}
+		}
+
+		movieCards[i].innerHTML += '<div class="rating">'+ ratingString +'</div>'
+	}
+
